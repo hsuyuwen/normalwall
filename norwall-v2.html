@@ -332,7 +332,7 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 
    垂直鋼筋 As_useV = ${As_useV.toFixed(2)} cm²，As<sub>req</sub> = ${Asreqv.toFixed(2)} cm² → ${AsUseVCheckText}
    水平鋼筋 As_useH = ${As_useH.toFixed(2)} cm²，As<sub>req</sub> = ${Asreqh.toFixed(2)} cm² → ${AsUseHCheckText}
-   垂直鋼筋是否 < As_max = ${As_max.toFixed(2)} cm² → ${AsUseMaxCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
+    As_useV = ${As_useV.toFixed(2)} cm² < As_max = ${As_max.toFixed(2)} cm² → ${AsUseMaxCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
       `;
 
       document.getElementById("result").innerHTML = resultText;
