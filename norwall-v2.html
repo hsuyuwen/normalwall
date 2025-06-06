@@ -257,19 +257,19 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 
 	地震反應折減係數  Rp = ${Rp.toFixed(3)} 
 
-	容許地震反應折減係數  Rpa = 1 + ( Rp - 1 ) / 1.5=${Rpa.toFixed(3)} 
+	容許地震反應折減係數  Rpa = 1 + ( Rp - 1 ) / 1.5 = ${Rpa.toFixed(3)} 
 
-	設計水平總橫力  F = 0.4× SDS ×I× ap ( 1 + 2h1 / h2 ) W / Rpa=${F.toFixed(3)} tf/m²
+	設計水平總橫力  F = 0.4× SDS ×I× ap ( 1 + 2h1 / h2 ) W / Rpa = ${F.toFixed(3)} tf/m²
 
-	Fmax = 1.6 × SDS × I × W=${Fmax.toFixed(3)} tf/m²
+	Fmax = 1.6 × SDS × I × W = ${Fmax.toFixed(3)} tf/m²
 
-	Fmin =  0.3 × SDS × I × W=${Fmin.toFixed(3)} tf/m²
+	Fmin =  0.3 × SDS × I × W = ${Fmin.toFixed(3)} tf/m²
 
-	地震力  Wu<sub>1</sub>=${Wu1.toFixed(3)} tf/m²
+	地震力  Wu<sub>1</sub> = ${Wu1.toFixed(3)} tf/m²
 
-	風力  Wu<sub>2</sub>=1.6xFw=${Wu2.toFixed(3)} tf/m²
+	風力  Wu<sub>2</sub>=1.6xFw  = ${Wu2.toFixed(3)} tf/m²
 
-	控制載重  Wu =max(Wu1,Wu2)= ${WuControl.toFixed(3)} tf/m²
+	控制載重  Wu =max(Wu1,Wu2) = ${WuControl.toFixed(3)} tf/m²
 
 <strong>設計載重:</strong><br>
 	最大彎矩  Mu = ${Mu.toFixed(3)} tf·m/m
@@ -301,22 +301,22 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 	最少水平鋼筋比  ρ<sub>h</sub> =  0.0025
 
 垂直鋼筋量			
-	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub>×L×d= ${ As1.toFixed(3)} cm<sup>2</sup>	
+	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub>×L×d  = ${ As1.toFixed(3)} cm<sup>2</sup>	
 	
-	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub>×L×d= ${ Asmin.toFixed(3)} cm<sup>2</sup>
+	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub>×L×d  = ${ Asmin.toFixed(3)} cm<sup>2</sup>
 		
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d= ${ Astemp.toFixed(3)} cm<sup>2</sup>
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>
 		
-	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub>×L×d= ${ Asv1.toFixed(3)} cm<sup>2</sup>
+	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub>×L×d  = ${ Asv1.toFixed(3)} cm<sup>2</sup>
 			
-	設計鋼筋量  As,<sub>req</sub>= ${ Asreqv.toFixed(3)} cm<sup>2</sup>		
+	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqv.toFixed(3)} cm<sup>2</sup>		
 		 	
 水平鋼筋量			
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d= ${ Astemp.toFixed(3)} cm<sup>2</sup>	
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>	
 		
-	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub>×L×d= ${ Ash1.toFixed(3)} cm<sup>2</sup>	
+	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub>×L×d  = ${ Ash1.toFixed(3)} cm<sup>2</sup>	
 	
-	設計鋼筋量  As,<sub>req</sub>= ${ Asreqh.toFixed(3)} cm<sup>2</sup>		
+	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqh.toFixed(3)} cm<sup>2</sup>		
 
  As_max = ${As_max.toFixed(2)} cm²
   垂直鋼筋 As_useV = ${As_useV.toFixed(2)} cm²，需求 = ${Asreqv.toFixed(2)} cm² → ${AsUseVCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
