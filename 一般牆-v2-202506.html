@@ -11,21 +11,15 @@
     #result { margin-top: 30px; font-size: 16px; white-space: pre-wrap; background: #f3f3f3; padding: 15px; border-radius: 5px; }
     .ok { color: green; font-weight: bold; }
     .ng { color: red; font-weight: bold; }
-    #calculator { display: none; }
-    #login { max-width: 300px; margin: 100px auto; }
+  
+ 
 	  .row { display: flex; gap: 20px; flex-wrap: wrap;  }
   .row label { display: flex; flex-direction: column; flex: 1 1 0;  } 
   .normal { font-weight: normal;  }
   </style>
 </head>
 <body oncontextmenu="return false">
-  <div id="login">
-    <h2>登入使用配筋計算器</h2>
-    <label>帳號：<input type="text" id="username"></label>
-    <label>密碼：<input type="password" id="password"></label>
-    <button onclick="checkLogin()">登入</button>
-    <p id="loginMessage" style="color:red;"></p>
-  </div>
+
 
   <div id="calculator">
     <h2>一般牆配筋與載重計算器</h2>
@@ -136,22 +130,7 @@
   </div>
 
   <script>
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || (e.ctrlKey && (e.key === 'u' || e.key === 'U'))) {
-        e.preventDefault();
-      }
-    });
-
-    function checkLogin() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      if (user === "hsuyuwen" && pass === "850716") {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("calculator").style.display = "block";
-      } else {
-        document.getElementById("loginMessage").innerText = "帳號或密碼錯誤！";
-      }
-    }
+ 
 
     const rebarTable = {
       D13: { db: 1.27, A: 1.27 },
