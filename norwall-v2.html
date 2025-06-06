@@ -56,24 +56,6 @@
 
     <label>
     <div class="row">	
-    <label>水平筋編號：
-      <select id="hrebar">
-        <option value="D13">D13</option>
-        <option value="D16">D16</option>
-        <option value="D19">D19</option>
-        <option value="D22">D22</option>
-        <option value="D25">D25</option>
-        <option value="D28">D28</option>
-        <option value="D29">D29</option>
-        <option value="D32">D32</option>
-        <option value="D36">D36</option>
-      </select>
-    </label>
-    <label>水平鋼筋間距（cm）：<input type="number" id="S_H" value="20"></label>
-    </div>	
-	
-    <label>
-    <div class="row">	
     <label>垂直筋編號：
       <select id="vrebar">
         <option value="D13">D13</option>
@@ -90,6 +72,24 @@
     <label>垂直鋼筋間距（cm）：<input type="number" id="S_V" value="20"></label>	
     </div>
 
+    <label>
+    <div class="row">	
+    <label>水平筋編號：
+      <select id="hrebar">
+        <option value="D13">D13</option>
+        <option value="D16">D16</option>
+        <option value="D19">D19</option>
+        <option value="D22">D22</option>
+        <option value="D25">D25</option>
+        <option value="D28">D28</option>
+        <option value="D29">D29</option>
+        <option value="D32">D32</option>
+        <option value="D36">D36</option>
+      </select>
+    </label>
+    <label>水平鋼筋間距（cm）：<input type="number" id="S_H" value="20"></label>
+    </div>	
+	
     <label>
     <div class="row">	
     <label>SDS：<input type="number" id="SDS" value="0.81"></label>
@@ -244,8 +244,19 @@ if (fc <= 280) {
       const Asreqh = Math.max(Astemp, Ash1);
 
       const AsUseMaxCheck = As_useV <= As_max;
-      const AsUseVCheck = As_useV >= Asreqv;
-      const AsUseHCheck = As_useH >= Asreqh;
+let AsUseVCheckText, AsUseHCheckText;
+
+if (As_useV < Asreqv) {
+  AsUseVCheckText = `As_useV < As_req → <span class="ok">OK</span>`;
+} else {
+  AsUseVCheckText = `As_useV > As_req → <span class="ng">NG</span>`;
+}
+
+if (As_useH < Asreqh) {
+  AsUseHCheckText = `As_useH < As_req → <span class="ok">OK</span>`;
+} else {
+  AsUseHCheckText = `As_useH > As_req → <span class="ng">NG</span>`;
+}
 
 let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
     let resultText = `
@@ -267,9 +278,9 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 
 	地震力  Wu<sub>1</sub> = ${Wu1.toFixed(3)} tf/m²
 
-	風力  Wu<sub>2</sub>=1.6xFw  = ${Wu2.toFixed(3)} tf/m²
+	風力  Wu<sub>2</sub> = 1.6 x Fw = ${Wu2.toFixed(3)} tf/m²
 
-	控制載重  Wu =max(Wu1,Wu2) = ${WuControl.toFixed(3)} tf/m²
+	控制載重  Wu = max ( Wu1, Wu2 ) = ${WuControl.toFixed(3)} tf/m²
 
 <strong>設計載重:</strong><br>
 	最大彎矩  Mu = ${Mu.toFixed(3)} tf·m/m
@@ -301,27 +312,27 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 	最少水平鋼筋比  ρ<sub>h</sub> =  0.0025
 
 垂直鋼筋量			
-	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub>×L×d  = ${ As1.toFixed(3)} cm<sup>2</sup>	
+	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub> × L × d  = ${ As1.toFixed(3)} cm<sup>2</sup>	
 	
-	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub>×L×d  = ${ Asmin.toFixed(3)} cm<sup>2</sup>
+	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub> × L × d = ${ Asmin.toFixed(3)} cm<sup>2</sup>
 		
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × L × d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>
 		
-	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub>×L×d  = ${ Asv1.toFixed(3)} cm<sup>2</sup>
+	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub> × L × d = ${ Asv1.toFixed(3)} cm<sup>2</sup>
 			
 	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqv.toFixed(3)} cm<sup>2</sup>		
 		 	
 水平鋼筋量			
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub>×L×d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>	
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × L × d = ${ Astemp.toFixed(3)} cm<sup>2</sup>	
 		
-	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub>×L×d  = ${ Ash1.toFixed(3)} cm<sup>2</sup>	
+	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub> × L × d = ${ Ash1.toFixed(3)} cm<sup>2</sup>	
 	
 	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqh.toFixed(3)} cm<sup>2</sup>		
 
- As_max = ${As_max.toFixed(2)} cm²
-  垂直鋼筋 As_useV = ${As_useV.toFixed(2)} cm²，需求 = ${Asreqv.toFixed(2)} cm² → ${AsUseVCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
-  水平鋼筋 As_useH = ${As_useH.toFixed(2)} cm²，需求 = ${Asreqh.toFixed(2)} cm² → ${AsUseHCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
-  垂直鋼筋是否 < As_max = ${As_max.toFixed(2)} cm² → ${AsUseMaxCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
+
+   垂直鋼筋 As_useV = ${As_useV.toFixed(2)} cm²，As<sub>req</sub> = ${Asreqv.toFixed(2)} cm² → ${AsUseVCheckText}
+   水平鋼筋 As_useH = ${As_useH.toFixed(2)} cm²，As<sub>req</sub> = ${Asreqh.toFixed(2)} cm² → ${AsUseHCheckText}
+   垂直鋼筋是否 < As_max = ${As_max.toFixed(2)} cm² → ${AsUseMaxCheck ? '<span class="ok">OK</span>' : '<span class="ng">NG</span>'}
       `;
 
       document.getElementById("result").innerHTML = resultText;
