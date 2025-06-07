@@ -32,17 +32,6 @@
       <img src="https://github.com/hsuyuwen/normalwall/raw/b8406d1339fa0585d28ef97ea3e44efc7f4d624f/%E4%B8%80%E7%8F%AD%E7%89%86.png" width="180">
     </div>
 
-
-
-  <!-- 🟢 右欄：牆高長厚 + 主筋 fy -->
-  <div style="flex: 1;">
-    
-      <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
-      <label>牆長 L（cm）：<input type="number" id="L" value="100"></label>    
-      <label>牆厚 t（cm）：<input type="number" id="t" value="20"></label>
-      <label>保護層 c.c.（cm）：<input type="number" id="cc" value="2"></label>
-</div>
-	  
     <div class="row">
       <label>混凝土強度：
         <select id="concreteGrade">
@@ -54,8 +43,17 @@
     </div>
   </div>
 
+  <!-- 🟢 右欄：牆高長厚 + 主筋 fy -->
+  <div style="flex: 1;">
+   
+      <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
+      <label>牆長 L（cm）：<input type="number" id="L" value="100"></label>
+      <label>保護層 c.c.（cm）：<input type="number" id="cc" value="2"></label>    
+      <label>牆厚 t（cm）：<input type="number" id="t" value="20"></label>
 
-    <label>主筋降伏 fy（kgf/cm²）：
+    <div class="row">
+      
+      <label>主筋降伏 fy（kgf/cm²）：
         <select id="fy">
           <option value="2800">2800 kgf/cm²</option>
           <option value="4200">4200 kgf/cm²</option>
@@ -65,6 +63,8 @@
       </label>
     </div>
   </div>
+
+</div>
 	  
     <label>
     <div class="row">	
