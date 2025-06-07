@@ -255,13 +255,13 @@ if (fc <= 280) {
       const AsUseMaxCheck = As_useV <= As_max;
 let AsUseVCheckText, AsUseHCheckText;
 
-if (As_useV < Asreqv) {
+if (As_useV > Asreqv) {
   AsUseVCheckText = `As_useV > As_req → <span class="ok">OK</span>`;
 } else {
   AsUseVCheckText = `As_useV < As_req → <span class="ng">NG</span>`;
 }
 
-if (As_useH < Asreqh) {
+if (As_useH > Asreqh) {
   AsUseHCheckText = `As_useH > As_req → <span class="ok">OK</span>`;
 } else {
   AsUseHCheckText = `As_useH < As_req → <span class="ng">NG</span>`;
