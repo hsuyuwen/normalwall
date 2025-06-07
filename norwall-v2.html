@@ -27,10 +27,21 @@
   <div id="calculator">
     <h2>一般牆配筋計算器</h2>
 
-    <div class="row">
-      <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
-      <label>牆長 L（cm）：<input type="number" id="L" value="100"></label>
+  <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 20px;">
+    <!-- 左側圖片 -->
+    <div style="flex: 0 0 auto;">
+      <img src="https://github.com/hsuyuwen/normalwall/raw/b8406d1339fa0585d28ef97ea3e44efc7f4d624f/%E4%B8%80%E7%8F%AD%E7%89%86.png"
+           width="360">
     </div>
+
+    <!-- 右側表單（原本輸入區域開頭） -->
+    <div style="flex: 1; min-width: 200px;">
+      <div class="row">
+        <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
+        <label>牆長 L（cm）：<input type="number" id="L" value="100"></label>
+      </div>
+    </div>
+  </div>
 	
     <label>
     <div class="row">
