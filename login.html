@@ -16,18 +16,25 @@
   <p id="msg" style="color:red;"></p>
 
   <script>
-    // 禁用快捷鍵（F12, Ctrl+Shift+I, Ctrl+U 等）
+    // 禁止右鍵選單
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+    // 禁止快捷鍵（F12、Ctrl+Shift+I/C/J、Ctrl+U）
     document.addEventListener("keydown", function (e) {
-      if (e.key === "F12" || 
-          (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) || 
-          (e.ctrlKey && e.key === "u")) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && e.key.toLowerCase() === "u")
+      ) {
         e.preventDefault();
       }
     });
 
-    //
+    // 密碼驗證
     function check() {
-      const correct = atob("aHN1eXV3ZW4wNzE2");  // 密碼是「123456」的 base64 編碼
+      const correct = atob("aHN1eXV3ZW4wNzE2");  // base64 密碼："hsuyuwen0716"
       const input = document.getElementById("pw").value;
       if (input === correct) {
         sessionStorage.setItem("authorized", "yes");
