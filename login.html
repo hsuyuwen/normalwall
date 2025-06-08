@@ -2,26 +2,35 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>輸入密碼進入工具</title>
+  <title>登入保護</title>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 100px; }
-    input { padding: 10px; font-size: 18px; }
-    button { padding: 10px 20px; font-size: 18px; margin-top: 10px; }
+    input, button { padding: 10px; font-size: 18px; margin: 10px; }
   </style>
 </head>
-<body>
-  <h2>請輸入密碼以使用工具</h2>
+<body oncontextmenu="return false">
+  <h2>請輸入密碼才能進入</h2>
   <input type="password" id="pw" placeholder="輸入密碼">
   <br>
-  <button onclick="checkPassword()">進入</button>
-  <p id="msg" style="color: red;"></p>
+  <button onclick="check()">進入</button>
+  <p id="msg" style="color:red;"></p>
 
   <script>
-    function checkPassword() {
+    // 禁用快捷鍵（F12, Ctrl+Shift+I, Ctrl+U 等）
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "F12" || 
+          (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) || 
+          (e.ctrlKey && e.key === "u")) {
+        e.preventDefault();
+      }
+    });
+
+    // 密碼是 base64 編碼，解碼再比對
+    function check() {
+      const correct = atob("aHN1eXV3ZW4wNzE2");  // 密碼是「123456」的 base64 編碼
       const input = document.getElementById("pw").value;
-      const correct = "hsuyuwen0716"; // 
       if (input === correct) {
-        sessionStorage.setItem("authorized", "yes"); // 存入通行令牌
+        sessionStorage.setItem("authorized", "yes");
         window.location.href = "index.html";
       } else {
         document.getElementById("msg").innerText = "密碼錯誤，請再試一次";
