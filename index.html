@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-  netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.location.href = "/login.html"; // 未登入導向 login 頁
-    }
-  });
-  netlifyIdentity.init();
+  if (sessionStorage.getItem("authorized") !== "yes") {
+    window.location.href = "login.html";
+  }
 </script>
 	
   <meta charset="UTF-8">
@@ -33,7 +27,7 @@
   <div id="calculator">
     <h2>一般牆配筋計算</h2>
   
-<!-- ✅ 雙欄排版 -->
+<!-- 雙欄-->
 <div style="display: flex; gap: 30px; align-items: flex-start;">
 
  <div style="flex: 1;">
@@ -43,7 +37,7 @@
     
   </div>
 
-  <!-- 🟢 右欄：牆高長厚 + 主筋 fy -->
+  <!-- 右欄 -->
   <div style="flex: 1;">
     
       <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
@@ -144,7 +138,7 @@
     </label>
     </div>	
 	
-    <button onclick="calculate()">計算</button>
+    <button onclick="calculate()">GOGO</button>
     <div id="result"></div>
   </div>
 
