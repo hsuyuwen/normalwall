@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.location.href = "/login.html"; // 未登入導向 login 頁
+    }
+  });
+  netlifyIdentity.init();
+</script>
+	
   <meta charset="UTF-8">
   <title>一般牆配筋計算</title>
   <style>
