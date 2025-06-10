@@ -259,6 +259,15 @@ if (fc <= 280) {
       const Asreqv = Math.max(Math.max(Math.max(Math.min(4 * As1 / 3, Asmin), Astemp), Asv1), As1);
       const Ash1 =lo_h1 * L * d;
       const Asreqh = Math.max(Astemp, Ash1);
+let Mint,MinL,tCheck;
+const MinL = (Math.min(L,H))/30
+const Mint = Math.max(10,MinL);
+if (t >= Mint) {
+  tCheck = `t > Mint → <span class="ok">OK</span>`;
+  } else {
+    tCheck =`t < Mint → <span class="ng">NG</span>`;
+  }
+  
 
       const AsUseMaxCheck = As_useV <= As_max;
 let AsUseVCheckText, AsUseHCheckText;
@@ -279,6 +288,7 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
     let resultText = `
 控制載重來源：${controlSource}
 
+最小厚度檢核：t = ${t.toFixed(0)} cm，Mint = ${Mint.toFixed(2)} cm → ${tCheck}
 
 外力計算:
 	<span class="normal">共振放大係數  ap = ${ap.toFixed(3)} 
