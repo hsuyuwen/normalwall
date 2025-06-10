@@ -45,7 +45,7 @@
   <div style="flex: 1;">
     
       <label>牆高 H（cm）：<input type="number" id="H" value="500"></label>
-      <label>牆長 L（cm）：<input type="number" id="L" value="100"></label>
+      <label>牆長 L（cm）：<input type="number" id="L1" value="100"></label>
       <label>牆厚 t（cm）：<input type="number" id="t" value="20"></label>
       <label>保護層 c.c.（cm）：<input type="number" id="cc" value="2"></label>          
      
@@ -163,7 +163,7 @@
 
     function calculate() {
       const H = +document.getElementById("H").value;
-      const L = +document.getElementById("L").value;
+      const L1 = +document.getElementById("L1").value;
       const t = +document.getElementById("t").value;
       const cc = +document.getElementById("cc").value;
       const fc = +document.getElementById("concreteGrade").value;
@@ -180,6 +180,7 @@
       const SDL = +document.getElementById("SDL").value;
       const a1 = document.getElementById("a1").value;
       const a2 = document.getElementById("a2").value;
+      const L = 100
 
       let ap, Rp;
 
@@ -216,11 +217,11 @@ if (F < Fmin) {
 let Mu, Vu;
 
 if (a1 === "非懸臂") {
-  Mu = (WuControl * (H / L) ** 2) / 8;
-  Vu = WuControl * H / L / 2;
+  Mu = (WuControl * (H / L1) ** 2) / 8;
+  Vu = WuControl * H / L1 / 2;
 } else {
-  Mu = (WuControl * (H / L) ** 2) / 2;
-  Vu = WuControl * H / L;
+  Mu = (WuControl * (H / L1) ** 2) / 2;
+  Vu = WuControl * H / L1;
 }
 
       const dbV = rebarTable[vrebar].db;
@@ -240,24 +241,24 @@ if (fc <= 280) {
       const C = (0.003 / (0.006 + et)) * d;
       const aa = beta * C;
 
-      const As_max = 0.85 * fc * aa * L / fy;
-      const As_useV = AbV * (L / S_V) ;
-      const As_useH = AbH * (L / S_H) ;
+      const As_max = 0.85 * fc * aa * L1 / fy;
+      const As_useV = AbV * (L1 / S_V) ;
+      const As_useH = AbH * (L1 / S_H) ;
 
       const M = fy / (0.85 * fc);
-      const Rn = Mu * 100000 / (0.9 * L * d * d);
+      const Rn = Mu * 100000 / (0.9 * L1 * d * d);
       const lo1 = (1 / M) * (1 - Math.sqrt(1 - 2 * M * Rn / fy));
       const lo_min = Math.max(0.8 * Math.sqrt(fc) / fy, 14 / fy);
       const lo_temp =0.0018;
      const lo_v1 =0.0015;
      const lo_h1 =0.0025;
 
-      const As1 = lo1 * L * d;
-      const Asmin = lo_min * L * d;
-      const Astemp = lo_temp* L * t;
-      const Asv1 =  lo_v1 * L * d;
+      const As1 = lo1 * L1 * d;
+      const Asmin = lo_min * L1 * d;
+      const Astemp = lo_temp* L1 * t;
+      const Asv1 =  lo_v1 * L1 * d;
       const Asreqv = Math.max(Math.max(Math.max(Math.min(4 * As1 / 3, Asmin), Astemp), Asv1), As1);
-      const Ash1 =lo_h1 * L * d;
+      const Ash1 =lo_h1 * L1 * d;
       const Asreqh = Math.max(Astemp, Ash1);
 let tCheck;
 const MinL = (Math.min(L,H))/30
@@ -339,20 +340,20 @@ let controlSource = (Wu1 < Wu2) ? "風力控制" : "地震力控制";
 	最少水平鋼筋比  ρ<sub>h</sub> =  0.0025
 
 垂直鋼筋量			
-	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub> × L × d  = ${ As1.toFixed(3)} cm<sup>2</sup>	
+	需求鋼筋量  As,<sub>1</sub> = ρ<sub>1</sub> × 100 × d  = ${ As1.toFixed(3)} cm<sup>2</sup>	
 	
-	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub> × L × d = ${ Asmin.toFixed(3)} cm<sup>2</sup>
+	最小鋼筋量  As,<sub>min</sub> =ρ<sub>min</sub> × 100 × d = ${ Asmin.toFixed(3)} cm<sup>2</sup>
 		
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × L × d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × 100 × d  = ${ Astemp.toFixed(3)} cm<sup>2</sup>
 		
-	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub> × L × d = ${ Asv1.toFixed(3)} cm<sup>2</sup>
+	最少鋼筋比鋼筋量  As,<sub>v1</sub>=ρ<sub>v1</sub> × 100 × d = ${ Asv1.toFixed(3)} cm<sup>2</sup>
 			
 	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqv.toFixed(3)} cm<sup>2</sup>		
 		 	
 水平鋼筋量			
-	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × L × d = ${ Astemp.toFixed(3)} cm<sup>2</sup>	
+	溫度鋼筋量  As,<sub>temp</sub>=ρ<sub>temp</sub> × 100 × d = ${ Astemp.toFixed(3)} cm<sup>2</sup>	
 		
-	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub> × L × d = ${ Ash1.toFixed(3)} cm<sup>2</sup>	
+	最少鋼筋比鋼筋量  As,<sub>h1</sub>=ρ<sub>h1</sub> × 100 × d = ${ Ash1.toFixed(3)} cm<sup>2</sup>	
 	
 	設計鋼筋量  As,<sub>req</sub>  = ${ Asreqh.toFixed(3)} cm<sup>2</sup>		
 
